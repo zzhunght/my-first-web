@@ -11,7 +11,7 @@
     justify-content: space-between;
     height:60px;
     align-items: center;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 0 auto
 }
 .logo-wr{
@@ -22,8 +22,13 @@
     text-shadow: 0 0 0.6em #ffa100;
     color: #fff;
 }
-.logo{
-
+.logo {
+    width: 200px;
+    height: 41px;
+}
+.logo img{
+    width: 100%;
+    height: 100%;
 }
 .search-box{
     display: flex;
@@ -68,4 +73,179 @@
 }
 .search-box-btn:hover{
     color: #fff
+}
+.years{
+    position: relative;
+    width: 130px;
+    height: 100%;
+    left: -16%;
+    text-align: left;
+}
+.years-label{
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 60px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.years-label::before {
+    position: absolute;
+    content: '';
+    border-width: 13px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+    bottom: 12%;
+    left: 8%;
+    opacity: 0
+}
+.years-label:hover::before{
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+    bottom: 0;
+}
+.years:hover .years-list{
+    visibility: unset;
+    opacity:1;
+    transform: translate(0);
+
+}
+.years-list{
+    position: absolute;
+    display: block;
+    top: 100%;
+    background: #fff;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 370px;
+    display: flex;
+    height: 211px;
+    flex-wrap: wrap;
+    border-top: 6px red solid;
+    padding-left: 10%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(0, 19px);
+    transform-origin: top;
+    transition: all 0.2s ease-in-out;
+}
+.years-list::after{
+    position: absolute;
+    content: '';
+    width: 300px;
+    height: 20px;
+    top: -8%;
+    left: 0;
+}
+/* .years-list::before{
+    position: absolute;
+    content: '';
+    border-width: 13px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+    top: -15%;
+} */
+.year-items{
+    width: 25%;
+    cursor: pointer;
+    line-height: 42px;
+}
+.year-items-label{
+    color: black;
+}
+.year-items-label:hover{
+    color:#ffa100;
+    transition: 0.15s;
+}
+.genres{
+    position: relative;
+    width: 130px;
+    height: 100%;
+    left: -33%;
+    text-align: left;
+}
+.genres-label{
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 60px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.genres-label::before {
+    position: absolute;
+    content: '';
+    border-width: 13px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+    bottom: 12%;
+    left: 8%;
+    opacity: 0
+}
+.genres-label:hover::before{
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+    bottom: 0;
+}
+.genres:hover .genres-list{
+    visibility: unset;
+    opacity:1;
+    transform: translate(0);
+
+}
+.genres-list{
+    overflow-y:auto;
+    position: absolute;
+    display: block;
+    top: 100%;
+    background: #fff;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 430px;
+    display: flex;
+    height: 211px;
+    flex-wrap: wrap;
+    border-top: 6px red solid;
+    padding-left: 10%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(0, 19px);
+    transform-origin: top;
+    transition: all 0.2s ease-in-out;
+}
+.genres-list::after{
+    position: absolute;
+    content: '';
+    width: 300px;
+    height: 20px;
+    top: -8%;
+    left: 0;
+}
+/* .genres-list::before{
+    position: absolute;
+    content: '';
+    border-width: 13px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+    top: -15%;
+} */
+.genre-items{
+    width: 33%;
+    cursor: pointer;
+    line-height: 42px;
+}
+.genre-items-label{
+    color: black;
+}
+.genre-items-label:hover{
+    color:#ffa100;
+    transition: 0.15s;
 }

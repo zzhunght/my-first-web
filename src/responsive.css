@@ -9,7 +9,20 @@
     }
     
     .logo-wr {
-        margin-left: 5%;
+        margin-left: 0%;
+        /* align-items: center; */
+        position: relative;
+        top: -7%;
+    }
+    .logo{
+        width: 112px;
+        height: 27px;
+    }
+    .years{
+        display:none;
+    }
+    .genres{
+        display:none;
     }
     .carousel{
         margin-top: 20px ;
@@ -68,6 +81,11 @@
     .watch-now {
         background: #fff;
         margin-top: 30px;
+    }
+    .watch-now.no-video {
+        background: #fff;
+        margin-top: 30px;
+        color:black;
     }
     .anime-detail {
        

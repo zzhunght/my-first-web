@@ -11,6 +11,10 @@ const fetchAnimeCarousel = async () =>{
     return response.json()
 
 }
+// const fetchRandomAnime = async () =>{
+//   const response = await fetch('https://api.aniapi.com/v1/random/anime/20')
+//   return response.json()
+// }
 
 
 
@@ -27,10 +31,14 @@ function Carousel(props) {
     slidesToScroll: 1
   };
     
-    const { data,status } = useQuery('fetchanimeCarousel',fetchAnimeCarousel)
+    const { data,isFetching,isError,isSuccess } = useQuery('fetchanimeCarousel',fetchAnimeCarousel,{
+      refetchOnWindowFocus:false
+    })
+    // const { data:random} = useQuery('fetchRandomAnime',fetchRandomAnime)
     console.log(data)
-    console.log(status)
-    if(status == 'loading'){
+    
+    console.log(isFetching,isError,isSuccess)
+    if(isFetching){
 
       return(
         <div className="carousel">
@@ -39,7 +47,7 @@ function Carousel(props) {
       )
     }
 
-    if(status == 'success'){
+    if(isSuccess){
 
       return (
           

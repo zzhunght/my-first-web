@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React ,{ useState } from 'react';
+import { useParams , useRouteMatch} from 'react-router-dom';
+import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query';
 import Skeleton from 'react-loading-skeleton';
@@ -6,25 +8,26 @@ import { Row , Col,Pagination } from 'antd';
 
 import './style.css'
 
+const fetchAnimeYears = (id,page) =>{
+    return axios.get(`https://api.aniapi.com/v1/anime?year=${id}&page=${page}&nsfw=true`)
+}
 
-function Anime(props) {
-    const [page,setPage]= useState(localStorage.getItem('page') || 1)
+function AnimeYears(props) {
+    const params = useParams()
+    console.log(params)
+    const [page,setPage]= useState(localStorage.getItem('page-years') || 1)
 
-
+    const id = params.id
+    const {data , isFetching,isSucess,isLoading} = useQuery(['fetchAnimeYears',id,page],()=>fetchAnimeYears(id,page),{
+        refetchOnWindowFocus:false,
+    })
+    console.log(id)
+    
     const onChange =  (value) =>{
         setPage(value)
-        localStorage.setItem('page',value)
+        localStorage.setItem('page-years',value)
     }
-    const fetchAnime = async (page) =>{
-        const response = await fetch('https://api.aniapi.com/v1/anime?nsfw=true&page=' + page)
-        return response.json()
-    
-    }
-    useEffect(()=>{
-        window.scrollTo(0,0)
-    },[page])
-    const { data,status } = useQuery(['fetchanime',page],()=>fetchAnime(page))
-    if (status == 'loading'){
+    if (isFetching || isLoading ){
         return (
             <div className="anime-wr">
                 <div className="anime-content">
@@ -44,17 +47,18 @@ function Anime(props) {
             </div>
         )
     }
-    
-    
-    if (status == 'success'){
-        return (
+
+
+
+    return (
         <div className="anime-wr">
             <div className="anime-content">
+                <div className="anime-year-label">
+                    ANIME NĂM {id}
+                </div>
                 <Row className="anime-body" gutter={[20,20]}>
                     {
-                        data &&
-                        data.data.documents.length >0 &&
-                        data.data.documents.map(anime =>(
+                        data?.data.data.documents.map(anime =>(
                             <Col key={anime.id} xs={12} sm={8} lg={6} xl={4} xxl={3} >
                                 <Link
                                  className="anime-item"  
@@ -73,7 +77,7 @@ function Anime(props) {
                 </Row>
                 <Pagination
                  defaultCurrent={page} 
-                 total={160} 
+                 total={data?.data.data.last_page || 10} 
                  pageSize={1} 
                  onChange={onChange} 
                  showSizeChanger
@@ -82,8 +86,7 @@ function Anime(props) {
             </div>
         </div>
         );
-    }
     
 }
 
-export default Anime;
+export default AnimeYears;

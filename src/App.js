@@ -14,6 +14,8 @@ import Anime from './components/Anime/Anime';
 import AnimeDetails from './components/AnimeDetails/AnimeDetails';
 import Watch from './components/Watch/Watch';
 import Search from './components/Search/Search';
+import AnimeYears from './components/AnimeYears/AnimeYears';
+import AnimeGenre from './components/AnimeGenre/AnimeGenre';
 
 const queryClient = new QueryClient();
 
@@ -41,6 +43,12 @@ function App() {
           </Route>
           <Route exact  path="/anime/:id">
             <AnimeDetails  />
+          </Route>
+          <Route   path="/:id/years">
+            <AnimeYears />
+          </Route>
+          <Route   path="/anime-genre/:id">
+            <AnimeGenre />
           </Route>
           <Route exact path="/anime/:id/watch">
             <Watch />

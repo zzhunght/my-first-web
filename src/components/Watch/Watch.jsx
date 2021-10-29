@@ -9,31 +9,32 @@ import meme2 from '../../img/khong-thay-zi-nuon.jpg'
 import './style.css'
 
 const fetchEpisodeList = async (id , page) =>{
-    return axios.get('https://api.aniapi.com/v1/episode?anime_id='+ id +'&locale=it&page=' + page)
-   
-
+    return axios.get(`https://api.aniapi.com/v1/episode?anime_id=${id}&locale=it&page=${page}`)
 }
 
 
 function Watch(props) {
     
     const [locale,setLocale] = useState('it')
-    const [page, setPage] = useState(1)
-    const [episodecurrent,setEpisodecurrent] = useState( Number(localStorage.getItem('episode')) || 1)
+   
+    const [page, setPage] = useState(Number(localStorage.getItem('page')) || 1 )
+    const [episodecurrent,setEpisodecurrent] = useState( Number(localStorage.getItem('episode')) || 1 )
     let param = useRouteMatch();
-    console.log(param)
+    // console.log(param)
     const id = param.params.id;
     if(localStorage.getItem('old-id') == false) {
         localStorage.setItem('old-id',id )
         console.log(localStorage.getItem('old-id'))
     }
     if(localStorage.getItem('old-id')){
-        console.log('true')
+        // console.log('true')
         if(Number(localStorage.getItem('old-id')) != id){
-            localStorage.setItem('count',0)
+            
             localStorage.setItem('old-id',id )
             console.log('id',localStorage.getItem('old-id'))
-            setEpisodecurrent('1')
+            setEpisodecurrent(1)
+            
+            localStorage.setItem('page',1)
             localStorage.setItem('episode','1')
         }
     }
@@ -42,10 +43,21 @@ function Watch(props) {
         setEpisodecurrent(value)
         localStorage.setItem('episode',value)
     }
+    const handelsetPagePrev = () =>{
+        setPage(old => Math.max(old - 1, 0))
+        localStorage.setItem('page',page)
+        console.log('page',localStorage.getItem('page'))
+    }
+    const handelsetPageNext = () =>{
+        setPage( x => x +1 )
+        localStorage.setItem('page',page + 1)
+        console.log('page',localStorage.getItem('page'))
+    }
 
    
     const { data,status } = useQuery(['fetchEpisode',id,page],()=>fetchEpisodeList(id,page),{
         refetchInterval:1000,
+        keepPreviousData:true,
     })
     if(status == 'loading'){
         return(
@@ -70,9 +82,9 @@ function Watch(props) {
     }
     
     if(status == 'success'){
-        console.log(episodecurrent)
+        // console.log(episodecurrent)
        
-        console.log('dataWatch',data)
+        // console.log('dataWatch',data)
         if(data.data.status_code === 404){
            
             
@@ -102,50 +114,50 @@ function Watch(props) {
                              }}
                              disabled={episodecurrent === 1}
                             > 
-                                PREV
+                                Tập Trước
                             </button>
                             <button
                              className="next-episode-btn"
                              onClick={()=> {
                                 setEpisodecurrent(x => x + 1)
-                                localStorage.setItem('episode',episodecurrent)
+                                localStorage.setItem('episode',episodecurrent) //đoạn này dùng để lưu tập nếu khi truy cập lai
                              }}
                             
                             > 
-                                NEXT 
+                                Tập Kế
                             </button>
                         </div>
                    <div className="episode">
                         
-                       {data?.data.data.documents.map((episode ,i,a)=> {
+                       { data?.data.data.documents.map((episode ,i,a)=> {
                         //    console.log('i',i)
                         //    console.log('a',a[i])
 
-                        if(i>=0 && i-1>0 && episode.number != a[i-1].number){
-                        return (
-                        <React.Fragment key={episode.id}>
-                            <button
-                             onClick={() => handelsetEpisode(episode.number)} 
-                             className={`${episode.number === episodecurrent ? 'active':''} espisode-btn btn`}
+                        if(i-1>0 && episode.number != a[i-1].number){
+                            return (
+                            <React.Fragment key={episode.id}>
+                                <button
+                                 onClick={() => handelsetEpisode(episode.number)} 
+                                 className={`${episode.number === episodecurrent ? 'active':''} espisode-btn btn`}
                              
-                            >
-                                {episode.number}
-                            </button>   
-                        </React.Fragment>
-                        
-                        )}} )}
+                                >
+                                    {episode.number}
+                                </button>   
+                            </React.Fragment>
+                            )
+                        }})}
                         
                         <div className="btn-control">
-                        {data.data.current_page === data.data.last_page ?" ":<button
-                             onClick={()=> setPage( x=> x+1)} disabled={data.data.current_page === data.data.last_page} 
+                        {data.data.data.current_page === data.data.data.last_page ?" ":<button
+                             onClick={handelsetPageNext} disabled={data.data.data.current_page === data.data.data.last_page} 
                              className="next-btn"    
                             >
                                 Next
                             </button> 
                             
                         }
-                         {data.data.current_page === 1 ?" ": <button
-                             onClick={() => setPage(old => Math.max(old - 1, 0))}
+                         {data.data.data.current_page === 1 ?" ": <button
+                             onClick={handelsetPagePrev}
                              disabled={page === 1}
                              className="prev-btn" 
                             >
