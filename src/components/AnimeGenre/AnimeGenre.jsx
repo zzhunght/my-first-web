@@ -18,7 +18,7 @@ function AnimeGenre(props) {
 
     const id = params.id.replace(/\s/g, "%20");
 
-    const {data , isFetching,isSucess,isLoading} = useQuery(['fetchAnimeYears',id,page],()=>fetchAnimeGenres(id,page),{
+    const {data , isFetching,isLoading} = useQuery(['fetchAnimeYears',id,page],()=>fetchAnimeGenres(id,page),{
         refetchOnWindowFocus:false,
     })
     console.log(id)
@@ -31,7 +31,7 @@ function AnimeGenre(props) {
     if (isFetching || isLoading ){
         return (
             <div className="anime-wr">
-                <div className="anime-content">
+                <div className="anime-content mr">
                 <Row className="anime-body"  gutter={[20,20]}>
                 <Col xs={12} sm={3} className="anime-item-skeleton"><Skeleton style={{height:'100%'}} /></Col>
                 <Col xs={12} sm={3} className="anime-item-skeleton"><Skeleton style={{height:'100%'}} /></Col>
@@ -53,7 +53,7 @@ function AnimeGenre(props) {
 
     return (
         <div className="anime-wr">
-            <div className="anime-content">
+            <div className="anime-content mr">
                 <div className="anime-year-label">
                     ANIME  {id}
                 </div>

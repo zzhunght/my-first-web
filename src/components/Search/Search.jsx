@@ -23,8 +23,8 @@ function Search({}) {
     },[keyword])
     if (status === 'loading'){
         return (
-            <div className="anime-wr">
-                <div className="anime-content">
+            <div className="anime-wr ">
+                <div className="anime-content mr">
                 <Row className="anime-body"  gutter={[20,20]}>
                 <Col xs={12} sm={3} className="anime-item-skeleton"><Skeleton style={{height:'100%'}} /></Col>
                 <Col xs={12} sm={3} className="anime-item-skeleton"><Skeleton style={{height:'100%'}} /></Col>
@@ -58,8 +58,8 @@ function Search({}) {
 
         if(data.status_code === 200){
             return (
-            <div className="anime-wr">
-                <div className="anime-content">
+            <div className="anime-wr search">
+                <div className="anime-content mr">
                     <Row className="anime-body" gutter={[20,20]}>
                         {
                             data &&

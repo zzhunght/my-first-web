@@ -10,6 +10,12 @@
 .anime-body{
 
 }
+.title-new{
+    text-align: left;
+    font-size: 23px;
+    color: #fff;
+    font-weight: 600;
+}
 .anime-item{
     text-decoration: none;
     background: #fff;

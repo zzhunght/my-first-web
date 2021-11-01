@@ -78,7 +78,7 @@
     position: relative;
     width: 130px;
     height: 100%;
-    left: -16%;
+    left: -13%;
     text-align: left;
 }
 .years-label{
@@ -165,7 +165,7 @@
     position: relative;
     width: 130px;
     height: 100%;
-    left: -33%;
+    left: -27%;
     text-align: left;
 }
 .genres-label{
@@ -249,3 +249,126 @@
     color:#ffa100;
     transition: 0.15s;
 }
+.mobile-menu{
+    /* display: none; */
+}
+.hamburger{
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
+    box-sizing: border-box;
+    height: 36px;
+    position: relative;
+    top: 7%;
+    display: none;
+}
+.hamburger .line {
+    width: 84%;
+    background: #fff;
+    height: 3px;
+    margin-bottom: 5px;
+    margin-top: 1px;
+    transition: 0.2s all;
+
+}
+.line.active:nth-child(1) {
+    transform: rotate(315deg);
+    position: absolute;
+    margin: 0;
+    transition: 0.2s all;
+
+}
+.line.active:nth-child(2) {
+    display:none;
+    transition: 0.2s all;
+    
+}
+.line.active:nth-last-child(1) {
+    
+    transform: rotate(225deg);
+
+    position: absolute;
+    margin: 0;
+    transition: 0.2s all;
+
+}
+.mobile-menu__inner {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 10;
+    text-align: left;
+    padding-top: 3%;
+    overflow-y: auto;
+    width: 69vw;
+    color: #fff;
+    background: rgb(11 11 11 / 98%);
+    transform: translateX(-260px);
+    transition: 0.2s all ease-in-out;
+    display: none;
+}
+.mobile-menu_years{
+
+}
+.mobile-menu_year_label{
+    margin-bottom: 0;
+}
+.mobile-menu_years-list{
+    display: flex;
+    transition: 0.3s all;
+    width: 63vw;
+    flex-wrap: wrap;
+    padding-left: 21px;
+    max-height: 0px;
+    overflow: hidden;
+    
+    
+}
+.mobile-menu_years-list.show{
+    margin-top: 10px;
+    max-height:180px;
+    transition: 0.3s all;
+
+}
+.mobile-menu_year-item{
+    width: 50%;
+    display: block;
+}
+.mobile-menu_genres{
+
+}
+.mobile-menu_genres-list{
+    display: flex;
+    transition: 0.3s all;
+    width: 63vw;
+    flex-wrap: wrap;
+    padding-left: 21px;
+    max-height: 0px;
+    overflow: hidden;
+
+}
+.mobile-menu_genres-list.show{
+    margin-top: 10px;
+    max-height:89vh;
+    transition: 0.3s all;
+
+}
+.mobile-menu_genre-item{
+    width: 50%;
+    display: block;
+}
+.mobile-menu__inner p {
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.mobile-item-link{
+    color: white;
+}
+

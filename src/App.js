@@ -16,6 +16,7 @@ import Watch from './components/Watch/Watch';
 import Search from './components/Search/Search';
 import AnimeYears from './components/AnimeYears/AnimeYears';
 import AnimeGenre from './components/AnimeGenre/AnimeGenre';
+import Recently from './components/Recently/Recently';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,10 @@ function App() {
   //   console.log('recentlylist',recentlylist)
   // }
 
+  useEffect(()=>{
+    window.scrollTo(0, 0)
+  })
+
   
   return (
     <div className="App">
@@ -39,6 +44,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Carousel />
+            <Recently />
             <Anime />
           </Route>
           <Route exact  path="/anime/:id">

@@ -1,4 +1,10 @@
 @media (max-width:739px) {
+    .navigation {
+        position:fixed;
+        left: 0;
+        right: 0;
+        z-index: 99;
+    }
     .ant-input {
         width: 33vw !important;
     
@@ -24,8 +30,19 @@
     .genres{
         display:none;
     }
+    .mobile-menu__inner{
+        display: block;
+    }
+   .mobile-menu__inner.show{
+        transform:translateX(0)
+    }
+    .hamburger{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .carousel{
-        margin-top: 20px ;
+        margin-top: 80px ;
         width: 95vw;
         
     }
@@ -59,6 +76,9 @@
 
     .anime-content {
         width: 94vw;
+    }
+    .anime-content.mr{
+        margin-top: 80px;
     }
     .ant-pagination-item {
         min-width: 25px;

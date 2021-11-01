@@ -8,6 +8,56 @@ import axios from 'axios'
 import { useQuery } from 'react-query'
 
 
+const MenuMobile = ({years,genres,showmenu,handelTongleMenu}) =>{
+    const [show,setShow] = useState(false)
+    const [showgenres,setShowGenres] = useState(false)
+    const onClick = () => {
+        setShow(false)
+        setShowGenres(false)
+        handelTongleMenu()
+    }
+    return(
+        <>
+                 
+                <div className={`mobile-menu__inner ${showmenu? 'show':''}`}>
+                    <p>
+                        <Link to="/" style={{ color:'red'}} onClick={onClick}>
+                            Trang Chủ
+                        </Link>
+                    </p>
+                    <div className="mobile-menu_years">
+                        
+                        <p className="mobile-menu_year_label" onClick={()=>setShow(!show)}> Năm </p>
+                        <ul className={`mobile-menu_years-list  ${show?'show':''}`}>
+                            {years.map(year => (
+                                <li key={year.id} className="mobile-menu_year-item">
+                                    <Link className="mobile-item-link" to={`/${year.id}/years`} onClick={onClick}>
+                                        {year.id}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="mobile-menu_genres">
+                        <p className="mobile-menu_genres_label" onClick={()=>setShowGenres(!showgenres)}> Thể Loại </p>
+                        <ul className={`mobile-menu_genres-list ${showgenres?'show':''}`}>
+                            {genres?.slice(0,100).map((genre,i) => (
+                                <li key={i} className="mobile-menu_genre-item">
+                                    <Link className="mobile-item-link" to={`/anime-genre/${genre}`} onClick={onClick}>
+                                        {genre}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+       
+
+        </>
+    )
+}
+
+
 const fetchGenreList = () =>{
     return axios.get(`https://api.aniapi.com/v1/resources/1.0/0`)
     
@@ -15,6 +65,7 @@ const fetchGenreList = () =>{
 
 
 function Navigation({handelsearchData}) {
+    const [showMenu,setShowMenu]= useState(false)
    
     const years = [
         {
@@ -79,6 +130,9 @@ function Navigation({handelsearchData}) {
             id:2006
         }
     ]
+    const handelTongleMenu = () =>{
+        setShowMenu(!showMenu)
+    }
     const [value,setValue] = useState('')
     const onSearch = e => {
     
@@ -93,6 +147,11 @@ function Navigation({handelsearchData}) {
     return (
         <div className="navigation">
             <div className="navigation-content">
+                <div className="hamburger" onClick={()=>setShowMenu(!showMenu)}>
+                    <div className={`line ${showMenu? "active" : ''}`}></div>
+                    <div className={`line ${showMenu? "active" : ''}`}></div>
+                    <div className={`line ${showMenu? "active" : ''}`}></div>
+                </div>
                 <div className="logo-wr">
                     <Link to="/" style={{textDecoration:'none',color:"#fff"}}>
                         <div className="logo">
@@ -128,6 +187,14 @@ function Navigation({handelsearchData}) {
                            
                         ))}
                     </ul>
+                </div>
+                <div className={`mobile-menu `}>
+                    <MenuMobile
+                     years={years} 
+                     genres={data?.data.data.genres} 
+                     showmenu={showMenu} 
+                     handelTongleMenu={handelTongleMenu}
+                    />
                 </div>
                 <div className="search-box" >
                    <input type="text"  placeholder="tên phim" className="input" onChange={e => setValue(e.target.value.replace(/\s/g, "%20"))}/>

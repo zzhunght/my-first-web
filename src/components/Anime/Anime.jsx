@@ -50,6 +50,7 @@ function Anime(props) {
         return (
         <div className="anime-wr">
             <div className="anime-content">
+                <p className="title-new"> ANIME MỚI </p>
                 <Row className="anime-body" gutter={[20,20]}>
                     {
                         data &&
