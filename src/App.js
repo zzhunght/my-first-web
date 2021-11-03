@@ -23,7 +23,7 @@ const queryClient = new QueryClient();
 
 
 function App() {
-  // const [recentlylist,setRecentlylist] = useState(JSON.parse(localStorage.getItem('recently')) || {})
+  const [recentlylist,setRecentlylist] = useState(JSON.parse(localStorage.getItem('recently')))
   
   // const setRecently = (data) =>{
   //   setRecentlylist(...recentlylist,data)
@@ -44,7 +44,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Carousel />
-            <Recently />
+            {recentlylist && <Recently />}
             <Anime />
           </Route>
           <Route exact  path="/anime/:id">

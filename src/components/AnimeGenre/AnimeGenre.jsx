@@ -1,4 +1,5 @@
-import React ,{ useState } from 'react';
+
+import React ,{ useState ,    useEffect  } from 'react';
 import { useParams , useRouteMatch} from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
@@ -24,6 +25,9 @@ function AnimeGenre(props) {
     console.log(id)
     console.log('data-genre',data)
     
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    })
     const onChange =  (value) =>{
         setPage(value)
         // localStorage.setItem('page-years',value)

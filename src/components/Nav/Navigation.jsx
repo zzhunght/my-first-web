@@ -147,7 +147,7 @@ function Navigation({handelsearchData}) {
     return (
         <div className="navigation">
             <div className="navigation-content">
-                <div className="hamburger" onClick={()=>setShowMenu(!showMenu)}>
+                <div className={`hamburger ${showMenu ? " show" : ''}`} onClick={()=>setShowMenu(!showMenu)}>
                     <div className={`line ${showMenu? "active" : ''}`}></div>
                     <div className={`line ${showMenu? "active" : ''}`}></div>
                     <div className={`line ${showMenu? "active" : ''}`}></div>

@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import { Row , Col } from 'antd';
 
 function Recently(props) {
-    const recentlyList = JSON.parse(localStorage.getItem('recently'))
+    const recentlyList = JSON.parse(localStorage.getItem('recently')) || []
+    const arr = []
+   
     function unique(arr) {
         var newArr = []
         for (var i = 0; i < arr.length; i++) {
@@ -31,7 +33,7 @@ function Recently(props) {
         }
         return newArr
     }
-    const animeList = unique(recentlyList.slice(0,8))
+    const animeList = unique(recentlyList?.slice(0,8))
     // console.log('unique',unique(recentlyList))
     // console.log('recently-page', recentlyList)
 

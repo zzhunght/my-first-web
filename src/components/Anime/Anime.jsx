@@ -74,7 +74,7 @@ function Anime(props) {
                 </Row>
                 <Pagination
                  defaultCurrent={page} 
-                 total={160} 
+                 total={100} 
                  pageSize={1} 
                  onChange={onChange} 
                  showSizeChanger
