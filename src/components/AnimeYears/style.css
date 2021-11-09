@@ -1,15 +1,4 @@
-.anime-wr{
-    margin-top: 30px;
-    padding-bottom: 30px;
-}
-.anime-content{
-    width: 89.5vw;
-    max-width:100%;
-    margin: 0 auto;
-}
-.anime-body{
 
-}
 .anime-year-label{
     color: #fff;
     width: 166px;
@@ -23,48 +12,4 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-.anime-item{
-    text-decoration: none;
-    background: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    display: block;
-    height: 312px;
-    color: #000;
-}
-.anime-item-skeleton{
-    height: 312px;
-    border-radius: 6px;
-    background: #000;
-
-}
-.anime-item-img{
-    height: 250px;
-}
-.anime-item-img img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.anime-item-name{
-    font-size: 15px;
-    text-align: left;
-    padding-left: 3%;
-    height: 50px;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    margin-top: 2%;
-}
-.pagination{
-    margin-top: 30px;
-    display: flex;
-    margin-left: 3%;
-    justify-content: center;
-}
-.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis, 
-.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
-    color:#fff !important;
 }

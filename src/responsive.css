@@ -140,4 +140,34 @@
     .meme {
         height: auto
     }
+    a.anime-item {
+        height: 250px;
+        background: #111111;
+        position: relative;
+        
+    }
+    .anime-item-name {
+        opacity: 1;
+        /* transform: translateY(314%); */
+        position: absolute;
+        bottom: -140px;
+        font-size: 13px;
+        width: 100%;
+        height: 20px;
+        display: -webkit-box;
+        transform: translate(0);
+        -webkit-line-clamp: 1;
+    }
+    .anime-item-img {
+        height: 81%;
+    }
+    .anime-item-des {
+        transition: all 0.1s ease-in-out;
+        /* transform: translateY(-150px); */
+        /* position: relative; */
+        /* display: none; */
+        position: absolute;
+        bottom: 57%;
+        width: 100%;
+    }
 }

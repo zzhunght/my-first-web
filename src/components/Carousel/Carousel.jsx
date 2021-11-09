@@ -3,13 +3,12 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import Skeleton from 'react-loading-skeleton';
 import Slider from "react-slick";
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 import "./style.css";
 
-const fetchAnimeCarousel = async () =>{
-    const response = await fetch('https://api.aniapi.com/v1/anime')
-    return response.json()
-
+const fetchAnimeCarousel = () =>{
+    return axios.get('https://api.aniapi.com/v1/anime')
 }
 // const fetchRandomAnime = async () =>{
 //   const response = await fetch('https://api.aniapi.com/v1/random/anime/20')
@@ -20,6 +19,8 @@ const fetchAnimeCarousel = async () =>{
 
 
 function Carousel(props) {
+  const [activeSlide,setActiveSlide] =useState(0)
+
 
   const settings = {
     autoplay:true,
@@ -28,17 +29,25 @@ function Carousel(props) {
     autoplaySpeed: 4000,
     speed: 1000,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    // afterChange: current =>handelCarouselChange(current)
   };
+  const handelCarouselChange = (current) =>{
+      setActiveSlide(current)
+
+  }
+  console.log('active',activeSlide)
     
-    const { data,isFetching,isError,isSuccess } = useQuery('fetchanimeCarousel',fetchAnimeCarousel,{
-      refetchOnWindowFocus:false
+    const { data,isFetching,isLoading,isSuccess } = useQuery('fetchanimeCarousel',()=>fetchAnimeCarousel(),{
+      refetchOnWindowFocus:true,
+      keepPreviousData:true,
+      // refetchInterval:1000,
     })
     // const { data:random} = useQuery('fetchRandomAnime',fetchRandomAnime)
     console.log(data)
     
-    console.log(isFetching,isError,isSuccess)
-    if(isFetching){
+    console.log(isFetching,isLoading,isSuccess)
+    if(isFetching || isLoading){
 
       return(
         <div className="carousel">
@@ -47,15 +56,15 @@ function Carousel(props) {
       )
     }
 
-    if(isSuccess){
+    
 
       return (
           
         <div className="carousel">
             <Slider {...settings}>
                 { data &&
-                    data.data.documents.length >0 &&
-                    data.data.documents.splice(0,20).map(anime =>(
+                    data?.data.data.documents.length >0 &&
+                    data?.data.data.documents.splice(0,20).map(anime =>(
                         <Link
                          to={`/anime/${anime.id}`}
                          className="carousel-slide" 
@@ -74,7 +83,7 @@ function Carousel(props) {
         
       );
 
-    }
+    
 }
 
 export default Carousel;

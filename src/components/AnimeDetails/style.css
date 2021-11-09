@@ -1,5 +1,5 @@
 .anime-detail{
-    height: 93vh;
+    height: auto;
 }
 .anime-details-bg{
     height: 350px;
@@ -59,4 +59,25 @@
 .no-video {
     width: 150px;
     background: red;
+}
+.comment-section {
+    width: 500px;
+    text-align: center;
+    max-width: 90%;
+    margin: auto;
+}
+.ant-comment-content-detail {
+
+    color: #fff;
+    text-align: left;
+}
+span.ant-comment-content-author-name {
+    color: #f4c619;
+    font-size: 16px;
+    font-weight: 700;
+}
+.ant-form-item-control-input-content textarea.ant-input {
+    max-width: 80%;
+    width: 500px !important;
+    display: block;
 }
